@@ -116,4 +116,3 @@ alias npm='pnpm'
 
 
 eval "$(${XDG_BIN_HOME:-$HOME/.local/bin}/mise activate zsh)"
-eval "$(${XDG_BIN_HOME:-$HOME/.local/bin}/mise direnv)"

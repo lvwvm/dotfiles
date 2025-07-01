@@ -1,4 +1,5 @@
 
+
 [bell]
 animation = "EaseOutQuad"
 color = "0x061229"
@@ -69,6 +70,7 @@ style = "Regular"
 [font.offset]
 x = 0
 y = 0
+
 
 [[keyboard.bindings]]
 action = "Paste"
@@ -588,12 +590,84 @@ chars = "\u001B[24;3~"
 key = "F12"
 mods = "Super"
 
-[mouse]
-hide_when_typing = true
+[general]
+live_config_reload = true
+
 
 [[mouse.bindings]]
 action = "PasteSelection"
 mouse = "Middle"
+
+
+[bell]
+animation = "EaseOutQuad"
+color = "0x061229"
+duration = 250
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x717885"
+blue = "0x9a99a3"
+cyan = "0xb08060"
+green = "0x2a3448"
+magenta = "0xdbdde0"
+red = "0xf0a000"
+white = "0xffffff"
+yellow = "0x4d5666"
+
+[colors.cursor]
+cursor = "0xb8bbc2"
+text = "0x061229"
+
+[colors.normal]
+black = "0x061229"
+blue = "0x5299bf"
+cyan = "0x72b9bf"
+green = "0x99bf52"
+magenta = "0x9989cc"
+red = "0xd07346"
+white = "0xb8bbc2"
+yellow = "0xfbd461"
+
+[colors.primary]
+background = "0x061229"
+foreground = "0xb8bbc2"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[debug]
+persistent_logging = false
+render_timer = false
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Firge35Nerd Console"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "SauceCodePro Nerd Font"
+style = "Semibold Italic"
+
+[font.normal]
+family = "Firge35Nerd Console"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[mouse]
+hide_when_typing = true
 
 #[mouse.double_click]
 #threshold = 300
@@ -607,14 +681,18 @@ multiplier = 3
 
 [selection]
 save_to_clipboard = false
+
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
 
 [window]
 decorations = "none"
 dynamic_padding = false
 opacity = 1.0
 startup_mode = "Windowed"
+
 dynamic_title = false
+
 
 [window.dimensions]
 columns = 100
@@ -624,5 +702,3 @@ lines = 40
 x = 2
 y = 2
 
-[general]
-live_config_reload = true

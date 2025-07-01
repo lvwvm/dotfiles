@@ -1,7 +1,0 @@
-global-dir = ${XDG_LIB_HOME}/pnpm/global
-global-bin-dir = ${XDG_BIN_HOME}
-store-dir = ${XDG_LIB_HOME}/pnpm/store
-modules-dir = node_modules
-virtual-store-dir = .pnpm
-node-linker = undefined
-symlink = true
