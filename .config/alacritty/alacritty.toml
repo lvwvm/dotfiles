@@ -622,3 +622,8 @@ x = 2
 y = 2
 
 [keyboard]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\n\r"
