@@ -35,7 +35,7 @@ fi
 
 # Default Compiler Options
 var "CFLAGS" "-Wall -std=gnu17"
-var "CXXFLAGS" "-Wall -std=gnu++14 -stdlib=libc++"
+var "CXXFLAGS" "-Wall -std=gnu++14"
 var "CPPFLAGS" "-Wall"
 
 # Set the version of the default compiler.
