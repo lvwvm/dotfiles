@@ -24,6 +24,4 @@ var "HISTSIZE" "12000"
 # The maximum number of history events to save in the history file.
 var "SAVEHIST" "10000"
 
-if ! [ -d "${ZPLUG_HOME}" ]; then
-	git clone https://github.com/zplug/zplug --depth=1 --branch 2.4.2 "${ZPLUG_HOME}"
-fi
+# zplug is installed by bootstrap.sh, never at login.

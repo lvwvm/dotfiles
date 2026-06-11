@@ -11,6 +11,4 @@ miseenv() {
     fi
 }
 
-if ! has "mise"; then
-    curl https://mise.run/zsh | sh
-fi
+# mise is installed by bootstrap.sh, never at login.
