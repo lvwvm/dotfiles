@@ -1,24 +1,16 @@
-[submodule "nvim"]
-    path = .config/nvim
-	url = https://github.com/lvwvm/.config-nvim.git
-	branch = develop
 [submodule "awesome"]
 	path = .config/awesome
 	url = https://github.com/lvwvm/.config-awesome.git
 	branch = develop
-[submodule "chemacs"]
-	path = .config/chemacs
-	url = https://github.com/lvwvm/.config-chemacs.git
+[submodule "nvim"]
+	path = .config/nvim
+	url = https://github.com/lvwvm/.config-nvim.git
+	branch = develop
+[submodule "emacsen"]
+	path = .config/emacsen
+	url = https://github.com/lvwvm/.config-emacsen.git
 	branch = develop
 [submodule "systemd"]
 	path = .config/systemd
 	url = https://github.com/lvwvm/.config-systemd.git
 	branch = develop
-[submodule "emacs"]
-	path = .config/emacs
-	url = https://github.com/lvwvm/.config-emacs.git
-	branch = develop
-[submodule "emacsen"]
-	path = .config/emacsen
-	url = https://github.com/lvwvm/.config-emacsen.git
-    branch = develop
