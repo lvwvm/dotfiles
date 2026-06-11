@@ -1,6 +1,69 @@
+# Whitelist model: ignore everything, then re-include managed paths.
+# Rationale: $HOME is the repo root; untracked noise (caches, app data,
+# downloads) must never appear in `git status`.
 
+/*
 
-# Added by cargo
+# repo plumbing
+!/.gitignore
+!/.gitmodules
 
-/target
-node_modules
+# home-level dotfiles
+!/.profile
+!/.zprofile
+!/.zshenv
+!/.zshrc
+!/.bashrc
+!/.bash_profile
+!/.bash_logout
+!/.xinitrc
+!/.Xclients
+!/.screenlayout
+!/pyproject.toml
+
+# ~/.config — selectively re-included
+!/.config
+/.config/*
+!/.config/alacritty
+!/.config/autostart
+!/.config/awesome
+!/.config/bat
+!/.config/chemacs
+!/.config/dirmngr
+!/.config/editorconfig
+!/.config/emacsen
+!/.config/flavours
+!/.config/git
+!/.config/gnupg
+!/.config/mise
+!/.config/mpv
+!/.config/nvim
+!/.config/p3
+!/.config/pacman
+!/.config/picom.conf
+!/.config/pipewire
+!/.config/profile
+!/.config/pypoetry
+!/.config/python_keyring
+!/.config/rofi
+!/.config/systemd
+!/.config/terraformrc
+!/.config/yay
+!/.config/zsh
+
+# runtime/generated data inside whitelisted dirs
+.config/zsh/.zsh_history
+.config/zsh/.zcompdump*
+.config/mise/config.d/
+.config/mpv/watch_later/
+.config/pipewire/media-session.d/
+.config/p3/.git-commit-msg
+.config/gnupg/S.*
+*~
+*.bk
+*.bak
+.config/git/gitk
+.config/gnupg/reader_0.status
+.config/pypoetry/poetry.lock
+.config/pypoetry/pyproject.toml
+.config/rofi/rofi-example.config
