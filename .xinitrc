@@ -4,6 +4,10 @@
 #
 # Executed by startx (run your window manager from here)
 
+# Same login environment as terminal shells (p3).
+P3_DIR="${P3_DIR:-${HOME}/.config/p3}"
+[ -z "${P3_LOADED}" ] && . "${HOME}/.profile" && P3_LOADED=1
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -39,30 +43,29 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-get_session(){
-	local dbus_args=(--sh-syntax --exit-with-session)
-	case $1 in
-		awesome) dbus_args+=(awesome) ;;
-		bspwm) dbus_args+=(bspwm-session) ;;
-		budgie) dbus_args+=(budgie-desktop) ;;
-		cinnamon) dbus_args+=(cinnamon-session) ;;
-		deepin) dbus_args+=(startdde) ;;
-		enlightenment) dbus_args+=(enlightenment_start) ;;
-		fluxbox) dbus_args+=(startfluxbox) ;;
-		gnome) dbus_args+=(gnome-session) ;;
-		i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
-		jwm) dbus_args+=(jwm) ;;
-		kde) dbus_args+=(startkde) ;;
-		lxde) dbus_args+=(startlxde) ;;
-		lxqt) dbus_args+=(lxqt-session) ;;
-		mate) dbus_args+=(mate-session) ;;
-		xfce) dbus_args+=(xfce4-session) ;;
-		openbox) dbus_args+=(openbox-session) ;;
-		*) dbus_args+=($DEFAULT_SESSION) ;;
+# POSIX sh — no bash arrays here.
+get_session() {
+	case "${1:-$DEFAULT_SESSION}" in
+		awesome) echo "awesome" ;;
+		bspwm) echo "bspwm-session" ;;
+		budgie) echo "budgie-desktop" ;;
+		cinnamon) echo "cinnamon-session" ;;
+		deepin) echo "startdde" ;;
+		enlightenment) echo "enlightenment_start" ;;
+		fluxbox) echo "startfluxbox" ;;
+		gnome) echo "gnome-session" ;;
+		i3|i3wm) echo "i3 --shmlog-size 0" ;;
+		jwm) echo "jwm" ;;
+		kde) echo "startkde" ;;
+		lxde) echo "startlxde" ;;
+		lxqt) echo "lxqt-session" ;;
+		mate) echo "mate-session" ;;
+		xfce) echo "xfce4-session" ;;
+		openbox) echo "openbox-session" ;;
+		*) echo "$DEFAULT_SESSION" ;;
 	esac
-
-	echo "dbus-launch ${dbus_args[*]}"
 }
 
-#exec $(get_session)
 xset r rate 500 33
+
+exec dbus-launch --exit-with-session $(get_session "$1")

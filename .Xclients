@@ -1,10 +1,6 @@
 #!/bin/sh
-
 #
-# ~/.Xclients
+# ~/.Xclients — executed by xdm/gdm/kdm at login.
+# .xinitrc sources the same p3 environment as terminal logins.
 #
-# Executed by xdm/gdm/kdm at login
-#
-
-/bin/bash --login -i ~/.xinitrc
-
+exec /bin/sh "${HOME}/.xinitrc"
