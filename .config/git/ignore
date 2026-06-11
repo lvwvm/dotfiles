@@ -1,0 +1,11 @@
+*.~undo-tree~
+.DS_Store
+.idea
+*.log
+tmp/
+
+*.py[cod]
+*.egg
+build
+htmlcov
+**/.claude/settings.local.json

@@ -1,0 +1,30 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.3.6" name="livestream">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output port="spotify:output_FL" node="spotify"/>
+   <input port="Aux-Sink-A:playback_FL" node="Aux-Sink-A"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output port="mpv:output_FL" node="mpv"/>
+   <input port="HDA Intel PCH:playback_FL" node="Built-in Audio Analog Stereo"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output port="Brave:output_FR" node="Brave"/>
+   <input port="Aux-Sink-A:playback_FR" node="Aux-Sink-A"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output port="Brave:output_FL" node="Brave"/>
+   <input port="Aux-Sink-A:playback_FL" node="Aux-Sink-A"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output port="mpv:output_FR" node="mpv"/>
+   <input port="HDA Intel PCH:playback_FR" node="Built-in Audio Analog Stereo"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output port="spotify:output_FR" node="spotify"/>
+   <input port="Aux-Sink-A:playback_FR" node="Aux-Sink-A"/>
+  </item>
+ </items>
+</patchbay>
+

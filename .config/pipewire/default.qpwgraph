@@ -1,0 +1,22 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.3.6" name="default">
+ <items>
+  <item port-type="pipewire-audio" node-type="pipewire">
+   <output port="Brave:output_FL" node="Brave"/>
+   <input port="Steinberg UR22C:playback_FL" node="Steinberg UR22C Analog Stereo"/>
+  </item>
+  <item port-type="pipewire-audio" node-type="pipewire">
+   <output port="Brave:output_FR" node="Brave"/>
+   <input port="WEBRTC VoiceEngine:input_FR" node="WEBRTC VoiceEngine"/>
+  </item>
+  <item port-type="pipewire-audio" node-type="pipewire">
+   <output port="Brave:output_FR" node="Brave"/>
+   <input port="Steinberg UR22C:playback_FR" node="Steinberg UR22C Analog Stereo"/>
+  </item>
+  <item port-type="pipewire-audio" node-type="pipewire">
+   <output port="Brave:output_FL" node="Brave"/>
+   <input port="WEBRTC VoiceEngine:input_FL" node="WEBRTC VoiceEngine"/>
+  </item>
+ </items>
+</patchbay>
+

@@ -1,0 +1,21 @@
+contenxt.modules = [
+{
+    name = libpipewire-module-loopback
+    args = {
+        audio.position = [ FL FR ]
+        capture.props = {
+            media.class = Audio/Sink
+            node.name = Aux Sink A
+        }
+    }
+}
+{   name = libpipewire-module-loopback
+    args = {
+        audio.position = [ FL FR ]
+        capture.props = {
+            media.class = Audio/Sink
+            node.name = Aux Sink B
+        }
+    }
+}
+]
