@@ -10,9 +10,7 @@
 
 # home-level dotfiles
 !/.profile
-!/.zprofile
 !/.zshenv
-!/.zshrc
 !/.bashrc
 !/.bash_profile
 !/.bash_logout
