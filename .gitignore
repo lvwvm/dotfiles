@@ -40,7 +40,6 @@
 !/.config/pacman
 !/.config/picom.conf
 !/.config/pipewire
-!/.config/profile
 !/.config/pypoetry
 !/.config/python_keyring
 !/.config/rofi
