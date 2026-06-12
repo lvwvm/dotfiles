@@ -62,4 +62,21 @@ fi
 # PRELUDE_INSTALL_DIR="${PRELUDE_DATA_HOME}" \
 #     curl -fsSL https://github.com/bbatsov/prelude/raw/master/utils/installer.sh | sh
 
+# --- systemd user units -------------------------------------------------------
+# Enable-state (.wants/ symlinks) is machine-local and NOT in git; without
+# this a fresh install has units but nothing enabled (no gpg-agent socket
+# => SSH_AUTH_SOCK dead). Portable set only — machine-specific units
+# (asusd-user, asus-notify, appimagelauncherd, docker-desktop, geoclue,
+# claude-cowork, podman) are enabled by hand where applicable.
+if command -v systemctl >/dev/null 2>&1; then
+    for u in dbus-broker.service \
+             gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket \
+             gpg-agent-browser.socket dirmngr.socket pcscd.socket \
+             pipewire.socket pipewire-pulse.socket wireplumber.service \
+             picom.service redshift-gtk.service emacs-doom.service \
+             xdg-user-dirs.service; do
+        systemctl --user enable "$u" >/dev/null 2>&1 || say "skip enable $u (unit missing)"
+    done
+fi
+
 say "bootstrap complete"
