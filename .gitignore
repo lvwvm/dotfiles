@@ -9,6 +9,7 @@
 !/.gitmodules
 
 # home-level dotfiles
+!/.editorconfig
 !/.profile
 !/.zshenv
 !/.bashrc
@@ -40,6 +41,8 @@
 !/.config/git
 !/.config/gnupg
 !/.config/gtk-3.0
+!/.config/htop
+!/.config/mimeapps.list
 !/.config/mise
 !/.config/mpv
 !/.config/nvim
@@ -54,6 +57,7 @@
 !/.config/rofi
 !/.config/systemd
 !/.config/terraformrc
+!/.config/user-dirs.dirs
 !/.config/yay
 !/.config/zsh
 
