@@ -36,8 +36,10 @@
 !/.config/editorconfig
 !/.config/emacsen
 !/.config/flavours
+!/.config/fontconfig
 !/.config/git
 !/.config/gnupg
+!/.config/gtk-3.0
 !/.config/mise
 !/.config/mpv
 !/.config/nvim
@@ -48,6 +50,7 @@
 !/.config/pipewire
 !/.config/pypoetry
 !/.config/python_keyring
+!/.config/qt5ct
 !/.config/rofi
 !/.config/systemd
 !/.config/terraformrc
