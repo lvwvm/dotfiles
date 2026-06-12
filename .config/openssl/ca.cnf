@@ -1,0 +1,33 @@
+[ ca ]
+
+# default certificate authority settings
+default_ca = local_ca
+
+[ local_ca ]
+dir = $ENV::SSL_HOME/ca
+utf8 = yes
+
+# The directory to output certificates to.
+new_certs_dir = $ENV::SSL_HOME/certs
+database = $ENV::SSL_HOME/ca.db
+
+# A text file containing the next serial number to use in hex. Mandatory.
+serial = $ENV::SSL_HOME/serial
+
+certificate = $ENV::SSL_HOME/ca/local_ca.pem
+private_key = $ENV::SSL_HOME/keys/local_ca.pem
+
+# Section of the configuration file containing certificate extensions to be added when a certificate is issued.
+x509_extensions = ca_x509v3
+
+# Determines how extensions in certificate requests should be handled.
+copy_extentsions = copy
+
+default_bits = 4096
+default_keyfile = $ENV::SSL_HOME/keys/default.pem
+
+# The number of days to certify a certificate for.
+default_days = 360
+default_md = blake2s256
+
+policy = ca_policy

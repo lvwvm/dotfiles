@@ -1,0 +1,50 @@
+# a personal yet flexible openssl configuration
+# 
+# Author: Idigo Luwum
+# Created: January 14 2021
+
+# "openssl_cnf must be included in the default section."
+#     - man config(5ssl)
+
+### environment variables
+HOME = .
+HOME = $ENV::HOME
+
+HOST = .
+HOST = $ENV::HOST
+
+USER = .
+USER = $ENV::USER
+
+SSL_HOME = .
+SSL_HOME = $ENV::HOME/.local/share/ssl
+
+RANDFILE = .
+RANDFILE = $ENV::HOME/.local/share/rnd
+
+# algorithm envelopes
+#alg_section = evp
+
+# ssl settings
+ssl_conf = ssl
+
+# crypto engine
+# engines = engine_section
+
+# asn1 object identification
+#oid_section = oids
+
+openssl_cnf = openssl_init
+
+[ openssl_init ]
+
+#.include=engine.cnf
+#.include=oids.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/ssl.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/subject.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/altsubj.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/issuer.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/x509v3.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/ca.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/req.cnf
+.include = ${ENV::XDG_CONFIG_HOME}/openssl/policy.cnf

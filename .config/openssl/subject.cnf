@@ -1,0 +1,48 @@
+# part of openssl.cnf
+# 
+# openssl base subject configuration
+# Environment variables cannot be used here.
+
+[ ca_subject ]
+commonName = Common Name
+commonName_default = $ENV::HOST
+
+#countryName = Country Code (2 Letter Code)
+countryName_default = XX
+countryName_min = 2
+countryName_max = 2
+
+stateOrProvinenceName = State
+stateOrProvinenceName_default = The Source   
+
+localityName = City
+localityName_default = Mega City 
+
+organizationName = Organization
+organizationName_default = Reds
+
+organizationalUnitName = Organizational Unit
+organizationalUnitName_default = Osiris
+
+[ cert_subject ]
+commonName = Common Name
+commonName_default = $ENV::USER
+
+countryName = Country Code (2 letter code)
+countryName_default = US
+countryName_min = 2
+countryName_max = 2
+
+stateOrProvinenceName = State
+stateOrProvinenceName_default = TX
+
+localityName = City
+localityName_default = Dallas
+
+organizationName_default = Void Computing Associates
+organizationalUnitName_default = Information Services
+
+emailAddress_default = ${ENV::USER}@tls.${ENV::HOST}
+emailAddress_max = 40
+
+

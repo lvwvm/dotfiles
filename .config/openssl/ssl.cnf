@@ -1,0 +1,25 @@
+# part of openssl.cnf
+#
+# ssl configuration module
+
+[ ssl ]
+system_default = ssl_defaults
+
+RSA.Certificate =   server_rsa.pem
+ECDSA.Certificate = server_ecdsa.pem
+Ed448.Certificate = server_ed448.pem
+
+# Security level set to 192 bits of security. As a result RSA, DSA
+# and DH keys shorter than 7680 bits and ECC keys shorter than 384
+# bits are prohibited.  Cipher suites using SHA1 for the MAC are
+# prohibited. TLS versions below 1.2 are not permitted.
+
+Ciphers = 'TLSv1.2:TLSv1.3'
+
+[ ssl_defaults ]
+MinProtocol = TLSv1.2
+MinProtocol = DTLSv1.2
+
+
+[ evp ]
+fips_mode = yes

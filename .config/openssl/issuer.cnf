@@ -1,0 +1,10 @@
+# part of openssl.cnf
+# 
+# openssl base issuer configuration
+
+[ ca_issuer ]
+issuerAltName=dirname:ca_subject
+issuerAltName=email:${ENV::USER}@${ENV::HOST}
+
+[ cert_issuer ]
+issuerAltName = issuer:copy

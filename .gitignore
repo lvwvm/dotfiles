@@ -19,6 +19,11 @@
 !/.screenlayout
 !/pyproject.toml
 
+# ~/.ssh — config only; keys/known_hosts never tracked
+!/.ssh
+/.ssh/*
+!/.ssh/config
+
 # ~/.config — selectively re-included
 !/.config
 /.config/*
@@ -36,6 +41,7 @@
 !/.config/mise
 !/.config/mpv
 !/.config/nvim
+!/.config/openssl
 !/.config/p3
 !/.config/pacman
 !/.config/picom.conf

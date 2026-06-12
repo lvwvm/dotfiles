@@ -1,0 +1,17 @@
+# part of openssl.cnf
+#
+# openssl subjectAlt configuration
+
+# contains distinguished name
+
+[ ca_altsubj ]
+#subjectAltName=email:${ENV::USER}@${ENV::HOST}
+
+[ cert_altsubj ]
+email = ${ENV::USER} @ ${ENV::HOST}
+DNS.1 = localhost
+DNS.2 = dns.localhost
+DNS.3 = void
+DNS.4 = dns.void
+IP.1 = 127.0.0.53
+IP.2 = ::1

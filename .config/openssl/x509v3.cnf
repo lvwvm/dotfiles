@@ -1,0 +1,86 @@
+# part of openssl.cnf
+# 
+# openssl x509v3 configuration
+
+[ ca_keyusage ]
+
+keyCertSign = True
+cRLSign = True
+
+[ ca_x509v3 ]
+
+basicConstraints = critical, CA:TRUE, pathlen:0
+
+keyUsage = @ca_keyusage
+
+# just leave this as hash
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always, issuer
+
+# The subject alternative name extension
+# Apparent root CA's are not supposed to use SubjectAltName
+#subjectAltName = critical, dirName:ca_subject
+issuerAltName = dirName:ca_issuer
+#policyConstraints = critical,requireExplicitPolicy:1,inhibitPolicyMapping:2
+
+
+[ cert_x509v3 ]
+
+# if this were a certificate authority certificate we would set CA:TRUE
+# pathlen parameter indicates the maximum number of CAs that can appear below
+# this one in a chain.
+basicConstraints = critical,CA:FALSE,pathlen:0
+
+# how a certificate will be used.
+keyUsage = @cert_keyusage
+
+# just leave this as hash
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = none
+
+# The subject alternative name extension
+subjectAltName = @cert_altsubj
+issuerAltName = dirName:cert_issuer
+
+# nameContraints = dirName:name
+# tlsfeature = status_request_v2 
+# more purposes for which the certificate public key can be used.
+
+# SSL/TLS Web Server Authentication.
+extendedKeyUsage = serverAuth, clientAuth
+
+# SSL/TLS Web Client Authentication.
+
+# E-mail Protection (S/MIME).
+
+# Code signing.
+# codeSigning = 0
+
+# Trusted Timestamping
+# timeStamping = 0
+
+# OCSP Signing
+
+# ipsec Internet Key Exchange
+# ipsecIKE = 0
+
+# Microsoft Individual Code Signing (authenticode)
+# msCodeInd = 0
+
+# Microsoft Commercial Code Signing (authenticode)
+# msCodeCom = 0
+
+# Microsoft Trust List Signing
+# msCTLSign = 0
+
+# Microsoft Encrypted File System
+# msEFS = 0
+
+# purposes for which the certificate public key can be used.
+[ cert_keyusage ]
+nonRepudiation = True
+keyAgreement = True
+digitalSignature = True
+keyEncipherment = True
+dataEncipherment = True
+

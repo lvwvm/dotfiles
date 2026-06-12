@@ -1,0 +1,97 @@
+# part of openssl.cnf
+# 
+# openssl req configuration
+
+#*************************
+#
+#   The [ req ] section, by default, is set to non-ca specific configuration.
+# This is done in the form of creating additional sections for the following:
+#
+#    distinguished_name
+#    req_extensions
+#    x509_extensions
+#    req_attributes
+#
+########
+
+[ req ]
+
+utf8 = yes
+
+# where to store
+default_keyfile = $ENV::SSL_HOME/keys/default.req
+
+# size of the private key
+#default_bits = 4096
+
+# default message digest 
+default_md = blake2s256
+
+# distinguished name configuration
+distinguished_name = cert_subject
+
+# extentions for certificate requests
+req_extentions = cert_x509v3
+
+# use cert
+x509_extentions = cert_x509v3
+
+# attributes 
+attributes = req_attributes
+
+[ req_attributes ]
+
+challengePassword = A Challenge Password
+challengePassword_min = 6
+challengePassword_max = 32
+
+[ ca_req ]
+
+utf8 = yes
+
+# where to store
+default_keyfile = $ENV::SSL_HOME/keys/default.req
+
+# size of the private key
+#default_bits = 4096
+
+# default message digest
+default_md = blake2s256
+
+# distinguished name configuration
+distinguished_name = ca_subject
+
+# extentions for certificate requests
+req_extentions = ca_x509v3
+
+# use cert
+x509_extentions = ca_x509v3
+
+# attributes
+attributes = req_attributes
+
+
+[ cert_req ]
+
+utf8 = yes
+
+# where to store
+default_keyfile = $ENV::SSL_HOME/keys/default.req
+
+# size of the private key
+#default_bits = 4096
+
+# default message digest
+default_md = blake2s256
+
+# distinguished name configuration
+distinguished_name = cert_subject
+
+# extentions for certificate requests
+req_extentions = cert_x509v3
+
+# use cert
+x509_extentions = cert_x509v3
+
+# attributes
+attributes = req_attributes
