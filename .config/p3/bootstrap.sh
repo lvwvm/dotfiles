@@ -25,10 +25,10 @@ clone() { # clone <url> <dest> [extra git args...]
 clone https://github.com/zplug/zplug "${ZPLUG_HOME}" --depth=1 --branch 2.4.2
 
 # --- ls colors --------------------------------------------------------------
-if [ ! -d "${XDG_DATA_HOME}/LS_COLORS" ]; then
-    clone https://github.com/trapd00r/LS_COLORS "${XDG_DATA_HOME}/LS_COLORS"
-    ln -sf "${HOME}/.dir_colors" "${XDG_DATA_HOME}/LS_COLORS/LS_COLORS"
-fi
+# Login (30-colors.sh) evals dircolors against the repo's LS_COLORS db.
+# NB: removed the old `ln -sf ~/.dir_colors ...` — inverted and destructive:
+# it replaced the database with a symlink to nonexistent ~/.dir_colors.
+clone https://github.com/trapd00r/LS_COLORS "${XDG_DATA_HOME}/LS_COLORS"
 
 # --- ruby: rbenv + plugins ---------------------------------------------------
 clone https://github.com/rbenv/rbenv.git "${RBENV_ROOT}"
