@@ -1,0 +1,82 @@
+shell = "zsh"
+
+[plugins.zsh-async]
+github = "mafredri/zsh-async"
+
+[plugins.spaceship]
+github = "spaceship-prompt/spaceship-prompt"
+use = ["spaceship.zsh"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-256color]
+github = "chrissicool/zsh-256color"
+
+[plugins.base16-shell]
+github = "chriskempson/base16-shell"
+
+[plugins.fasd]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/fasd"
+
+[plugins.fancy-ctrl-z]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/fancy-ctrl-z"
+
+[plugins.colored-man-pages]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/colored-man-pages"
+
+[plugins.command-not-found]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/command-not-found"
+
+[plugins.vagrant]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/vagrant"
+
+[plugins.docker]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/docker"
+
+[plugins.terraform]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/terraform"
+
+[plugins.npm]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/npm"
+
+[plugins.gem]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/gem"
+
+[plugins.pip]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/pip"
+
+[plugins.git]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/git"
+
+[plugins.golang]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/golang"
+
+[plugins.systemd]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/systemd"
+
+[plugins.zsh-you-should-use]
+github = "MichaelAquilina/zsh-you-should-use"
+
+[plugins.tsm]
+github = "robertaudi/tsm"
+
+# Must stay last: needs to wrap widgets defined by all plugins above it.
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"

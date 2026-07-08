@@ -56,6 +56,7 @@
 !/.config/python_keyring
 !/.config/qt5ct
 !/.config/rofi
+!/.config/sheldon
 !/.config/systemd
 !/.config/terraformrc
 !/.config/user-dirs.dirs

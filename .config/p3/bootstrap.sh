@@ -21,8 +21,12 @@ clone() { # clone <url> <dest> [extra git args...]
     fi
 }
 
-# --- zsh: zplug -------------------------------------------------------------
-clone https://github.com/zplug/zplug "${ZPLUG_HOME}" --depth=1 --branch 2.4.2
+# --- zsh: sheldon ------------------------------------------------------------
+if ! command -v sheldon >/dev/null 2>&1; then
+    say "install sheldon"
+    curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+        | bash -s -- --repo rossmacarthur/sheldon --to "${XDG_BIN_HOME}"
+fi
 
 # --- ls colors --------------------------------------------------------------
 # Login (30-colors.sh) evals dircolors against the repo's LS_COLORS db.
