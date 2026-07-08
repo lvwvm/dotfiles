@@ -39,43 +39,16 @@ SSH_TTY=$(tty)
 export SSH_TTY
 export GPG_TTY
 
-# source zplug.
-. "${ZPLUG_HOME}/init.zsh"
+# Several oh-my-zsh plugins (fasd, docker, gem, npm) cache generated
+# completions under $ZSH_CACHE_DIR. oh-my-zsh core normally sets this; since
+# sheldon only clones the individual plugin dirs, set it ourselves using
+# oh-my-zsh's own upstream default fallback.
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/oh-my-zsh"
+mkdir -p "${ZSH_CACHE_DIR}/completions"
+fpath=("${ZSH_CACHE_DIR}/completions" $fpath)
 
-# check for updates.
-if ! zplug check --verbose; then
-    printf "Install zplug plugins? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-zplug "mafredri/zsh-async", from:"github"
-zplug "denysdovhan/spaceship-prompt", use:"spaceship.zsh", from:"github", as:"theme"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "chrissicool/zsh-256color"
-zplug "chriskempson/base16-shell", from:"github", as:"plugin"
-zplug "plugins/fasd", from:"oh-my-zsh"
-zplug "plugins/fancy-ctrl-z", from:"oh-my-zsh"
-zplug "plugins/colored-man-pages", from:"oh-my-zsh"
-zplug "plugins/command-not-found", from:"oh-my-zsh"
-zplug "plugins/vagrant", from:"oh-my-zsh"
-zplug "plugins/docker", from:"oh-my-zsh"
-zplug "plugins/terraform", from:"oh-my-zsh"
-zplug "plugins/npm", from:"oh-my-zsh"
-zplug "plugins/gem", from:"oh-my-zsh"
-zplug "plugins/pip", from:"oh-my-zsh"
-zplug "plugins/cargo", from:"oh-my-zsh"
-zplug "plugins/git", from:"oh-my-zsh"
-zplug "plugins/golang", from:"oh-my-zsh"
-zplug "plugins/systemd", from:"oh-my-zsh"
-zplug "MichaelAquilina/zsh-you-should-use", from:"github", as:"plugin"
-zplug "robertaudi/tsm"
-zplug "zsh-users/zsh-syntax-highlighting"
-
-zplug load
+# source sheldon-managed plugins (see ${XDG_CONFIG_HOME}/sheldon/plugins.toml).
+eval "$(sheldon source)"
 
 # completion settings
 
