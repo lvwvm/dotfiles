@@ -51,6 +51,7 @@
 !/.config/pacman
 !/.config/picom.conf
 !/.config/pipewire
+!/.config/prek
 !/.config/pypoetry
 !/.config/python_keyring
 !/.config/qt5ct

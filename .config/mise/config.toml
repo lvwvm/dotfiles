@@ -3,23 +3,24 @@ age = "latest"
 ant = "latest"
 bun = "latest"
 claude-code = "latest"
-deno = "2.2.1"
+deno = "latest"
+gh = "latest"
 go = "latest"
 gopass = "latest"
-java = "25"
+java = "latest"
 openbao = "latest"
 opencode = "latest"
-opentofu = "1.9.0"
+opentofu = "latest"
 pnpm = "latest"
+prek = "latest"
+python = "latest"
+ruff = "latest"
 rust = "latest"
 sops = "latest"
-terraform-ls = "0.36.4"
-usage = "2.0.5"
+terraform-ls = "latest"
+usage = "latest"
 
 [settings]
-idiomatic_version_file_enable_tools = ["python"]
 
 [settings.npm]
 bun = true
-
-[env]
