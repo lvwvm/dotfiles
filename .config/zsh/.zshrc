@@ -47,9 +47,6 @@ export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/oh-my-zsh"
 mkdir -p "${ZSH_CACHE_DIR}/completions"
 fpath=("${ZSH_CACHE_DIR}/completions" $fpath)
 
-# source sheldon-managed plugins (see ${XDG_CONFIG_HOME}/sheldon/plugins.toml).
-eval "$(sheldon source)"
-
 # completion settings
 
 zstyle ':completion:*' add-space true
@@ -79,6 +76,9 @@ autoload -Uz compinit
 compinit
 
 # End of lines added by compinstall
+
+# source sheldon-managed plugins (see ${XDG_CONFIG_HOME}/sheldon/plugins.toml).
+eval "$(sheldon source)"
 
 
 
