@@ -13,9 +13,6 @@ github = "zsh-users/zsh-completions"
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 
-[plugins.zsh-256color]
-github = "chrissicool/zsh-256color"
-
 [plugins.base16-shell]
 github = "chriskempson/base16-shell"
 
@@ -80,3 +77,7 @@ github = "robertaudi/tsm"
 # Must stay last: needs to wrap widgets defined by all plugins above it.
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.ls-colors]
+local = "/home/luwum/.config/sheldon/plugins/ls-colors"
+use = ["*.plugin.zsh"]

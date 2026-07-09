@@ -1,0 +1,269 @@
+# dircolors configuration using ANSI terminal color positions (0-15).
+# Adapts automatically to any active base16 theme (phd, default-dark, etc.)
+# because base16-shell remaps terminal color slots 0-15.
+#
+# Color key (base16 convention → ANSI slot):
+#   0  black   (base00 bg) |  8  brblack  (base03)
+#   1  red     (base08)    |  9  brred    (base08)
+#   2  green   (base0B)    | 10  brgreen  (base0B)
+#   3  yellow  (base0A)    | 11  bryellow (base0A)
+#   4  blue    (base0D)    | 12  brblue   (base0D)
+#   5  magenta (base0E)    | 13  brmagenta(base0E)
+#   6  cyan    (base0C)    | 14  brcyan   (base0C)
+#   7  white   (base05 fg) | 15  brwhite  (base07)
+
+# --- File type classes ---
+NORMAL                    00            # default (white fg = slot 7)
+FILE                      00            # regular file
+DIR                       01;34         # directory → bold blue (slot 4)
+LINK                      01;36         # symlink  → bold cyan (slot 6)
+MULTIHARDLINK             01;33         # multi-hardlink → bold yellow (slot 3)
+FIFO                      35            # pipe     → magenta (slot 5)
+SOCK                      01;35         # socket   → bold magenta (slot 5)
+DOOR                      01;35         # door     → bold magenta (slot 5)
+BLK                       01;33         # block device → bold yellow (slot 3)
+CHR                       01;31         # char device → bold red (slot 1)
+ORPHAN                    01;31;47      # orphan symlink → bold red on white
+SETUID                    37;41         # setuid   → white on red
+SETGID                    30;43         # setgid   → black on yellow
+CAPABILITY                01;31         # capability → bold red
+STICKY                    01;96         # sticky   → bold brcyan (slot 14)
+OTHER_WRITABLE            01;93         # other-writable → bold bryellow (slot 11)
+STICKY_OTHER_WRITABLE     01;93         # sticky+other-writable → bold bryellow (slot 11)
+EXEC                      01;32         # executable → bold green (slot 2)
+
+# --- Archives / compressed ---
+*.tar                     01;31
+*.tgz                     01;31
+*.gz                      01;31
+*.xz                      01;31
+*.bz2                     01;31
+*.zst                     01;31
+*.z                       01;31
+*.Z                       01;31
+*.zip                     01;31
+*.7z                      01;31
+*.rar                     01;31
+*.lz                      01;31
+*.lzma                    01;31
+*.lzo                     01;31
+*.lrz                     01;31
+*.zoo                     01;31
+*.deb                     01;31
+*.rpm                     01;31
+*.apk                     01;31
+*.jar                     01;31
+*.cab                     01;31
+*.dmg                     01;31
+*.iso                     01;31
+*.bin                     01;31
+*.pak                     01;31
+*.vpk                     01;31
+*.pk3                     01;31
+
+# --- Images ---
+*.jpg                     01;35
+*.jpeg                    01;35
+*.png                     01;35
+*.gif                     01;35
+*.bmp                     01;35
+*.svg                     01;35
+*.webp                    01;35
+*.ico                     01;35
+*.tif                     01;35
+*.tiff                    01;35
+*.xcf                     01;35
+*.psd                     01;35
+*.ai                      01;35
+*.eps                     01;35
+
+# --- Video ---
+*.mp4                     01;36
+*.mkv                     01;36
+*.avi                     01;36
+*.mov                     01;36
+*.m4v                     01;36
+*.webm                    01;36
+*.mpg                     01;36
+*.mpeg                    01;36
+*.flv                     01;36
+*.ogv                     01;36
+*.wmv                     01;36
+*.ts                      01;36
+*.VOB                     01;36
+*.vob                     01;36
+
+# --- Audio ---
+*.mp3                     01;33
+*.flac                    01;33
+*.wav                     01;33
+*.ogg                     01;33
+*.opus                    01;33
+*.m4a                     01;33
+*.aac                     01;33
+*.wma                     01;33
+*.mid                     01;33
+*.midi                    01;33
+
+# --- Documents / text ---
+*.pdf                     01;37
+*.epub                    01;37
+*.mobi                    01;37
+*.djvu                    01;37
+*.doc                     01;37
+*.docx                    01;37
+*.odt                     01;37
+*.rtf                     01;37
+*.md                      01;37
+*.markdown                01;37
+*.rst                     01;37
+*.txt                     00
+*.nfo                     01;37
+
+# --- Spreadsheets / data ---
+*.csv                     01;32
+*.xls                     01;32
+*.xlsx                    01;32
+*.ods                     01;32
+*.tsv                     01;32
+
+# --- Presentations ---
+*.ppt                     01;31
+*.pptx                    01;31
+*.odp                     01;31
+
+# --- Source code ---
+*.c                       32
+*.h                       36
+*.cpp                     32
+*.hpp                     36
+*.cxx                     32
+*.hxx                     36
+*.cc                      32
+*.hh                      36
+*.rs                       32
+*.go                       32
+*.zig                      32
+*.nim                      32
+*.py                       32
+*.js                       32
+*.ts                       32
+*.jsx                      32
+*.tsx                      32
+*.java                     32
+*.rb                       32
+*.lua                      32
+*.pl                       32
+*.pm                       32
+*.sh                       01;32
+*.bash                     01;32
+*.zsh                      01;32
+*.ksh                      01;32
+*.fish                     01;32
+*.vim                      01;32
+*.el                       01;32
+
+# --- Compiled / object ---
+*.o                        90
+*.class                    90
+*.pyc                      90
+*.rlib                     90
+*.rbc                      90
+
+# --- Config / data formats ---
+*.conf                    01;33
+*.cfg                     01;33
+*.ini                     01;33
+*.toml                    01;33
+*.yaml                    01;33
+*.yml                     01;33
+*.json                    01;33
+*.xml                     01;33
+*.plist                   01;33
+*.env                     01;33
+*.editorconfig            01;33
+
+# --- Markup / web ---
+*.html                    01;35
+*.htm                     01;35
+*.css                     01;36
+*.scss                    01;36
+*.sass                    01;36
+*.less                    01;36
+
+# --- Databases ---
+*.sql                     34
+*.db                      34
+*.sqlite                  34
+*.sqlite3                 34
+*.dump                    34
+
+# --- Build / CI ---
+Makefile                  01;34
+Dockerfile                01;34
+*.make                    01;34
+*.mk                      01;34
+*.cmake                   01;34
+CMakeLists.txt            01;34
+
+# --- Git ---
+*.git                     01;31
+*.gitignore               90
+*.gitattributes           90
+*.gitmodules              90
+*.gitkeep                 90
+
+# --- Important project files ---
+README                    01;36
+README.md                 01;36
+README.rst                01;36
+LICENSE                   01;36
+COPYING                   01;36
+CHANGELOG                 01;36
+CONTRIBUTING              01;36
+AUTHORS                   01;36
+VERSION                   01;36
+
+# --- Backup / temp ---
+*.bak                     90
+*.swp                     90
+*.swo                     90
+*.tmp                     90
+*~                        90
+*.orig                    90
+*.pacnew                  90
+*.part                    90
+*.aria2                   90
+
+# --- System / service ---
+*.service                 01;36
+*.socket                  01;36
+*.timer                   01;36
+*.path                    01;36
+*.target                  01;36
+*.mount                   01;36
+*.device                  01;36
+
+# --- Crypto / security ---
+*.asc                     01;33
+*.gpg                     01;33
+*.pgp                     01;33
+*.sig                     01;33
+*.pem                     01;33
+*.p12                     01;33
+*.key                     01;33
+*.crt                     01;33
+
+# --- Fonts ---
+*.ttf                     01;35
+*.otf                     01;35
+*.woff                    01;35
+*.woff2                   01;35
+*.eot                     01;35
+
+# --- Container / infra ---
+*.tf                      01;34
+*.tfvars                  01;34
+*.tfstate                 01;34
+*.helm                    01;34
+*.kube                    01;34
