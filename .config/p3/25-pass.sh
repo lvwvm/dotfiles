@@ -1,5 +1,15 @@
 #!/usr/bin/env sh
 
+# Password store location
+var "PASSAGE_DIR" "$XDG_DATA_HOME/pass"
+[ ! -d "$PASSAGE_DIR" ] && mkdir "$PASSAGE_DIR"
+
+# Identities file location
+var "PASSAGE_IDENTITIES_FILE" "$PASSAGE_DIR/identities"
+
+#  age binary (tested with age and rage)
+var "PASSAGE_AGE" "$(command -v rage || command -v age || true)"
+
 # PASSWORD_STORE_DIR - Overrides the default password storage directory.
 var "PASSWORD_STORE_DIR" "$XDG_DATA_HOME/pass"
 [ ! -d "$PASSWORD_STORE_DIR" ] && mkdir "$PASSWORD_STORE_DIR"
