@@ -26,6 +26,8 @@ podman-tui = "latest"
 kubectl = "latest"
 k9s = "latest"
 helm = "latest"
+lima = "latest"
+spring-boot = "latest"
 
 [settings]
 

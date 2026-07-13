@@ -1,0 +1,20 @@
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+hooks = [
+  { id = "trailing-whitespace", name = "remove trailing whitespace", files = ".*" },
+  { id = "end-of-file-fixer", args = ["--fix"], files = ".*" },
+  { id = "no-commit-to-branch", pattern = ["main", "master"] },
+  { id = "detect-private-key", files = ".*" },
+  { id = "check-toml" },
+  { id = "check-json" },
+  { id = "check-yaml" },
+  { id = "file-contents-sorter" }
+]
+
+[[repos]]
+repo = "https://github.com/antonbabenko/pre-commit-terraform"
+rev = "v1.108.0"
+hooks = [
+    { id = "terraform_fmt" }
+
+]
