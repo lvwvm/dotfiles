@@ -1,20 +1,24 @@
 [[repos]]
 repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
 hooks = [
   { id = "trailing-whitespace", name = "remove trailing whitespace", files = ".*" },
   { id = "end-of-file-fixer", args = ["--fix"], files = ".*" },
-  { id = "no-commit-to-branch", pattern = ["main", "master"] },
+  { id = "no-commit-to-branch", args = ["--pattern=^(main|master|trunk)$"] },
   { id = "detect-private-key", files = ".*" },
   { id = "check-toml" },
   { id = "check-json" },
   { id = "check-yaml" },
-  { id = "file-contents-sorter" }
+  { id = "file-contents-sorter" },
 ]
 
 [[repos]]
 repo = "https://github.com/antonbabenko/pre-commit-terraform"
 rev = "v1.108.0"
+files = "*.tf"
 hooks = [
-    { id = "terraform_fmt" }
-
+    { id = "terraform_fmt" },
+    { id = "terraform_validate", args = ["--hook-config=--tf-path=tofu"] },
+    { id = "terraform_tflint",   args = ["--hook-config=--tf-path=tofu"] },
+    { id = "terraform_trivy",    args = ["--hook-config=--tf-path=tofu"] },
 ]

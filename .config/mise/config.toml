@@ -28,6 +28,8 @@ k9s = "latest"
 helm = "latest"
 lima = "latest"
 spring-boot = "latest"
+coder = "latest"
+"aqua:loft-sh/devpod" = "latest"
 
 [settings]
 
