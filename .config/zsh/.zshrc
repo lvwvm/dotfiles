@@ -77,10 +77,20 @@ compinit
 
 # End of lines added by compinstall
 
-eval "$(${XDG_BIN_HOME:-$HOME/.local/bin}/mise activate zsh)"
+# Resolve mise via PATH rather than a fixed directory: it may come from
+# $XDG_BIN_HOME, Homebrew or zerobrew depending on the machine. $XDG_BIN_HOME
+# is already prepended to PATH by p3's 10-xdg.sh, so a local install is still
+# found first.
+if (( $+commands[mise] )); then
+    eval "$(mise activate zsh)"
+fi
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # source sheldon-managed plugins (see ${XDG_CONFIG_HOME}/sheldon/plugins.toml).
-eval "$(sheldon source)"
+# Guarded: sheldon is provisioned by mise, so it is absent until `mise install`
+# has run at least once on a new machine.
+if (( $+commands[sheldon] )); then
+    eval "$(sheldon source)"
+fi
 
 
 
@@ -89,7 +99,7 @@ alias -g ll='ls -l'
 alias -g la='ll -a'
 alias npm='pnpm'
 
-
-
-
+# This repo: a bare git dir at ~/.dotfiles with $HOME as its worktree.
+# Commits happen in ~/Projects worktrees; $HOME only ever fast-forwards.
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
