@@ -608,7 +608,7 @@ save_to_clipboard = false
 semantic_escape_chars = ''',│`|:"' ()[]{}<>'''
 
 [window]
-decorations = "none"
+decorations = "Full"
 dynamic_padding = false
 opacity = 1.0
 startup_mode = "Windowed"
