@@ -102,4 +102,3 @@ alias npm='pnpm'
 # This repo: a bare git dir at ~/.dotfiles with $HOME as its worktree.
 # Commits happen in ~/Projects worktrees; $HOME only ever fast-forwards.
 alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
