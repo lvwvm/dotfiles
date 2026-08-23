@@ -77,6 +77,8 @@ compinit
 
 # End of lines added by compinstall
 
+eval "$(${XDG_BIN_HOME:-$HOME/.local/bin}/mise activate zsh)"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # source sheldon-managed plugins (see ${XDG_CONFIG_HOME}/sheldon/plugins.toml).
 eval "$(sheldon source)"
 
@@ -88,4 +90,6 @@ alias -g la='ll -a'
 alias npm='pnpm'
 
 
-eval "$(${XDG_BIN_HOME:-$HOME/.local/bin}/mise activate zsh)"
+
+
+
