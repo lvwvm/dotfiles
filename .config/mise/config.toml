@@ -31,6 +31,13 @@ spring-boot = "latest"
 coder = "latest"
 "aqua:loft-sh/devpod" = "latest"
 delta = "latest"
+antigravity-cli = "latest"
+mermaid-ascii = "latest"
+gradle = "latest"
+uv = "latest"
+clang = "latest"
+ghcup = "latest"
+ruby = "latest"
 
 [settings]
 
