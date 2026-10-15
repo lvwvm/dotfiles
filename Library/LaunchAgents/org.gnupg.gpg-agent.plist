@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  GnuPG cryptographic agent passphrase cache.
+  Port of gpg-agent.service (+ gpg-agent{,-ssh,-extra,-browser}.socket).
+
+  systemd socket activation does not port: gpg-agent's --supervised takes its
+  listeners through the systemd LISTEN_FDS protocol, which launchd does not
+  speak (GnuPG 2.5 has renamed the option --deprecated-supervised). It runs
+  as its own daemon instead, creating all four sockets itself under gpgconf's
+  socketdir.
+
+  Nor does supervision. --no-detach is not honoured by gpg-agent 2.5.21: the
+  invoked process forks and exits 0 regardless, leaving the agent reparented
+  to init. launchd then SIGTERMs that orphan as job cleanup, which is why
+  this job is a launcher rather than a supervisor:
+
+    - AbandonProcessGroup stops the cleanup from killing the agent.
+    - KeepAlive is off. A job that exits by design cannot be kept alive; with
+      it on, launchd would spawn an agent every ThrottleInterval forever.
+
+  So Restart=on-failure has no counterpart here. gnupg covers it in its own
+  way: gpg, gpgsm and gpg-connect-agent each auto-launch an agent on demand
+  when the socket does not answer.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.gnupg.gpg-agent</string>
+
+    <!-- Login shell so $GNUPGHOME/$GNUPG_AGENT_CONF and a PATH that finds
+         gpg-agent come from p3, exactly as the unit took them from the
+         systemd user environment. exec replaces the shell so the redirect
+         below belongs to the agent, which inherits it across the fork.
+
+         The guards keep the job idempotent -- `launchctl kickstart` on a
+         live agent is a no-op rather than a duplicate. gpg-connect-agent
+         cannot serve as the liveness test: it exits 0 whether or not an
+         agent answers.
+
+         gpg-agent does not create its homedir -- it fails to bind the socket
+         and exits. $GNUPGHOME resolves under ~/Library/Application Support
+         here (10-xdg.sh gives Darwin native data/cache roots); that parent
+         always exists on macOS, but the gnupg directory under it does not. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-lc</string>
+        <string>
+command -v gpg-agent &gt;/dev/null 2&gt;&amp;1 || exit 0
+pgrep -x -U "$(id -u)" gpg-agent &gt;/dev/null 2&gt;&amp;1 &amp;&amp; exit 0
+[ -d "$GNUPGHOME" ] || { mkdir -p "$GNUPGHOME" &amp;&amp; chmod 700 "$GNUPGHOME"; }
+mkdir -p "$XDG_VAR_HOME/log"
+exec &gt;&gt;"$XDG_VAR_HOME/log/org.gnupg.gpg-agent.log" 2&gt;&amp;1
+exec gpg-agent --daemon \
+    --homedir "$GNUPGHOME" \
+    --options "$GNUPG_AGENT_CONF" \
+    --enable-ssh-support
+        </string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Without this launchd kills the forked agent when the job exits. -->
+    <key>AbandonProcessGroup</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <false/>
+
+    <key>ProcessType</key>
+    <string>Interactive</string>
+</dict>
+</plist>

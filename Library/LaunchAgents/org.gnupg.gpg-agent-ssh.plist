@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Publish gpg-agent's ssh socket to the GUI session.
+  Port of the ExecStartPost pair in gpg-agent-ssh.socket:
+      systemctl --user set-environment SSH_AUTH_SOCK=...
+      systemctl --user import-environment SSH_AUTH_SOCK
+
+  `launchctl setenv` is the launchd equivalent and reaches the same audience:
+  processes launchd starts afterwards (GUI apps), not already-running ones.
+  Shells get SSH_AUTH_SOCK from p3's 20-ssh.sh instead, so this job exists
+  only for applications that never source a profile.
+
+  One-shot: it sets a string and exits, so it does not matter whether
+  gpg-agent has created the socket yet.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.gnupg.gpg-agent-ssh</string>
+
+    <!-- Guarded on gpgconf for the same reason 20-ssh.sh is: it is absent
+         until gnupg is installed, and an unset SSH_AUTH_SOCK (macOS falls
+         back to its own launchd ssh-agent) beats one set to "". -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-lc</string>
+        <string>
+command -v gpgconf &gt;/dev/null 2&gt;&amp;1 || exit 0
+sock=$(gpgconf --list-dir agent-ssh-socket) || exit 0
+[ -n "$sock" ] || exit 0
+exec launchctl setenv SSH_AUTH_SOCK "$sock"
+        </string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- No launchd analogue of ExecStopPost; undo by hand with
+         `launchctl unsetenv SSH_AUTH_SOCK`. -->
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Doom Emacs text editor via/ chemacs. Port of emacs-doom.service.
+  This is the daemon $EDITOR talks to (emacsclient -c --socket-name doom).
+
+  The unit passed a literal ~ to --init-directory and relied on Emacs to
+  expand it; $DOOM_DATA_DIR (99-emacsen.sh) names the same directory without
+  the indirection.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.gnu.emacs.doom</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-lc</string>
+        <string>
+command -v emacs &gt;/dev/null 2&gt;&amp;1 || exit 0
+mkdir -p "$XDG_VAR_HOME/log"
+exec &gt;&gt;"$XDG_VAR_HOME/log/org.gnu.emacs.doom.log" 2&gt;&amp;1
+exec emacs --init-directory "$DOOM_DATA_DIR"
+        </string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+
+    <key>ProcessType</key>
+    <string>Interactive</string>
+</dict>
+</plist>
