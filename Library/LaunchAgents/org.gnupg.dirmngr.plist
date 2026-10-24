@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  GnuPG network certificate management daemon.
+  Port of dirmngr.service + dirmngr.socket.
+
+  Same shape as org.gnupg.gpg-agent, for the same reasons: no socket
+  activation, no honoured --no-detach, so launch-and-abandon rather than
+  supervise. See that file for the full account.
+
+  The $GNUPGHOME check is repeated rather than delegated because launchd
+  starts agents in parallel -- this one cannot assume the agent job got to
+  the directory first.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.gnupg.dirmngr</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-lc</string>
+        <string>
+command -v dirmngr &gt;/dev/null 2&gt;&amp;1 || exit 0
+pgrep -x -U "$(id -u)" dirmngr &gt;/dev/null 2&gt;&amp;1 &amp;&amp; exit 0
+[ -d "$GNUPGHOME" ] || { mkdir -p "$GNUPGHOME" &amp;&amp; chmod 700 "$GNUPGHOME"; }
+mkdir -p "$XDG_VAR_HOME/log"
+exec &gt;&gt;"$XDG_VAR_HOME/log/org.gnupg.dirmngr.log" 2&gt;&amp;1
+exec dirmngr --daemon \
+    --homedir "$GNUPGHOME" \
+    --options "$DIRMNGR_CONF"
+        </string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>AbandonProcessGroup</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <false/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>

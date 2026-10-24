@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+# makepkg/AUR build locations. Guarded on pacman rather than on $P3_OS:
+# these are Arch conventions, not Linux ones, so a Debian box has no more
+# use for them than macOS does.
+has "pacman" || return 0
+
 # Where to download source package files from AUR.
 var "SRCDEST" "${XDG_DATA_HOME}/src"
 [ ! -d "$SRCDEST" ] && mkdir "$SRCDEST"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Emacs text editor via/ chemacs. Port of emacs.service.
+
+  --fg-daemon is already the right shape for launchd, which supervises
+  foreground processes. Dropped in translation:
+    - After=/Wants= gpg-agent sockets: launchd has no ordering between
+      agents. Emacs needs no agent to reach its own init.
+    - ExecStop=emacsclient --eval "(kill-emacs)": launchd sends SIGTERM on
+      bootout, which the Emacs daemon already handles as a clean shutdown.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.gnu.emacs</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-lc</string>
+        <string>
+command -v emacs &gt;/dev/null 2&gt;&amp;1 || exit 0
+mkdir -p "$XDG_VAR_HOME/log"
+exec &gt;&gt;"$XDG_VAR_HOME/log/org.gnu.emacs.log" 2&gt;&amp;1
+exec emacs --fg-daemon
+        </string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Restart=on-failure -->
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+
+    <key>ProcessType</key>
+    <string>Interactive</string>
+</dict>
+</plist>

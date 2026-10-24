@@ -79,5 +79,5 @@ github = "robertaudi/tsm"
 github = "zsh-users/zsh-syntax-highlighting"
 
 [plugins.ls-colors]
-local = "/home/luwum/.config/sheldon/plugins/ls-colors"
+local = "~/.config/sheldon/plugins/ls-colors"
 use = ["*.plugin.zsh"]

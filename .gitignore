@@ -20,6 +20,15 @@
 !/.screenlayout
 !/pyproject.toml
 
+# ~/Library/LaunchAgents — macOS agents only; the rest of ~/Library is app state
+!/Library
+/Library/*
+!/Library/LaunchAgents
+/Library/LaunchAgents/*
+!/Library/LaunchAgents/README.md
+!/Library/LaunchAgents/org.gnupg.*.plist
+!/Library/LaunchAgents/org.gnu.emacs*.plist
+
 # ~/.ssh — config only; keys/known_hosts never tracked
 !/.ssh
 /.ssh/*

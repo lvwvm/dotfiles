@@ -48,12 +48,7 @@ var() {
 }
 
 has() {
-    [ -x $(command -v $1) ]
-    return $?
-}
-
-find_init() {
-    ps -p 1 -o cmd | awk -e 'NR==2 { print $1 }'
+    command -v "$1" >/dev/null 2>&1
 }
 
 p3() {

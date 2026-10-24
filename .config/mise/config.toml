@@ -30,6 +30,7 @@ lima = "latest"
 spring-boot = "latest"
 coder = "latest"
 "aqua:loft-sh/devpod" = "latest"
+delta = "latest"
 
 [settings]
 
