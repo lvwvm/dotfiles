@@ -1,6 +1,9 @@
 [user]
 	name = Idigo Luwum
 	email = luwum@pm.me
+	# the YubiKey's signing subkey. The ! pins it: gpg otherwise picks the
+	# newest signing subkey, which is not on the card.
+	signingKey = FEECE04F31F34062D149CED59C74CDBDA77A81AB!
 
 [author]
 	name = Idigo Luwum
@@ -31,7 +34,7 @@
 	lineNumber = true
 	patternType = extended
 [gpg]
-	program = gpg2
+	program = gpg
 	format = openpgp
 	#minTrustLevel = marginal
 
@@ -82,6 +85,8 @@
 	# come after the fix up.
 	autoSquash = true
 	autoStash = true
+[commit]
+	gpgSign = true
 [tag]
 	sign=true
 [protocol "file"]
